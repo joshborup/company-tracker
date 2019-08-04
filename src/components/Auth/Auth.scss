@@ -1,0 +1,126 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  .banner {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(240, 240, 240);
+  }
+
+  .login {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > div {
+      min-height: 360px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      .show-password {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input {
+          width: initial;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .auth-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    > div {
+      display: flex;
+      margin: 5px 0;
+      align-items: flex-start;
+      flex-direction: column;
+
+      width: 100%;
+
+      input {
+        width: 100%;
+        height: 30px;
+        margin: 5px 0;
+      }
+    }
+  }
+
+  > div {
+    justify-content: center;
+    align-items: flex-start;
+
+    .login-register-container {
+      background: white;
+      border-radius: 7px;
+      width: 270px;
+      box-shadow: 1px 4px 7px rgba(0, 0, 0, 0.397),
+        1px 4px 17px rgba(0, 0, 0, 0.1);
+
+      .button-tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div {
+          width: 100%;
+          button {
+            @extend %base-button;
+            width: 100%;
+            border: none;
+            color: white;
+            background: $accent;
+          }
+          .active {
+            background: white;
+            color: #333;
+          }
+        }
+      }
+
+      > div:last-child {
+        padding: 10px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.auth-btn {
+  @extend %base-button;
+  background-color: $main;
+  color: white;
+  align-self: flex-end;
+  margin: 10px 0;
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    > span {
+      margin: 0 5px 0 0px;
+    }
+  }
+}
+
+.reg,
+.log {
+  height: 50px;
+  cursor: initial !important;
+}
+
+.reg {
+  border-top-right-radius: 7px;
+}
+
+.log {
+  border-top-left-radius: 7px;
+}
