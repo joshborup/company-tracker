@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { customeErrMessage } from "../../utils/frontUtils";
-import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 import ReactLoading from "react-loading";
+import logo from "../Shared/Logo.png";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
@@ -38,7 +39,8 @@ function Login({ className }) {
       })
       .catch(err => {
         setLoading(false);
-        customeErrMessage(setMessage, err.response.data);
+        console.log(err);
+        // customeErrMessage(setMessage, err.response.data);
       });
   }
 
@@ -106,112 +108,112 @@ function Login({ className }) {
   );
 }
 
-function Register({ className }) {
-  const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [secondTimePassword, setsecondTimePassword] = useState("");
-  const [passwordMatch, setPasswordMatch] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+// function Register({ className }) {
+//   const dispatch = useDispatch();
+//   const [username, setUsername] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [secondTimePassword, setsecondTimePassword] = useState("");
+//   const [passwordMatch, setPasswordMatch] = useState(false);
+//   const [loading, setLoading] = useState(false);
+//   const [message, setMessage] = useState("");
 
-  function register() {
-    let current = true;
-    setLoading(true);
-    axios
-      .post("/api/register", { username, password, email })
-      .then(res => {
-        if (current) {
-          setLoading(false);
-          dispatch({ type: "SET_USER", payload: res.data });
-        }
-        return () => {
-          current = false;
-        };
-      })
-      .catch(err => {
-        const { message, errmsg } = err.response.data;
-        const errorMessage = message || errmsg;
-        setLoading(false);
-        customeErrMessage(setMessage, errorMessage);
-      });
-  }
+//   function register() {
+//     let current = true;
+//     setLoading(true);
+//     axios
+//       .post("/api/register", { username, password, email })
+//       .then(res => {
+//         if (current) {
+//           setLoading(false);
+//           dispatch({ type: "SET_USER", payload: res.data });
+//         }
+//         return () => {
+//           current = false;
+//         };
+//       })
+//       .catch(err => {
+//         const { message, errmsg } = err.response.data;
+//         const errorMessage = message || errmsg;
+//         setLoading(false);
+//         customeErrMessage(setMessage, errorMessage);
+//       });
+//   }
 
-  useEffect(() => {
-    setPasswordMatch(false);
-    if (password === secondTimePassword) {
-      setPasswordMatch(true);
-    }
-  }, [password, secondTimePassword]);
-  return (
-    <form onSubmit={e => e.preventDefault()} className={className}>
-      <div>
-        <input
-          placeholder="Username"
-          autoComplete="username"
-          autoFocus={true}
-          value={username}
-          onChange={({ target: { value } }) => setUsername(value)}
-        />
-      </div>
-      <div>
-        <input
-          placeholder="you@example.com"
-          type="email"
-          autoComplete="email"
-          value={email}
-          onChange={({ target: { value } }) => setEmail(value)}
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          placeholder="Password"
-          autoComplete="new-password"
-          value={password}
-          onChange={({ target: { value } }) => setPassword(value)}
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          autoComplete="new-password"
-          value={secondTimePassword}
-          onChange={({ target: { value } }) => setsecondTimePassword(value)}
-        />
-      </div>
-      <Button
-        action={
-          passwordMatch
-            ? register
-            : () => customeErrMessage(setMessage, "passwords dont match")
-        }
-        label={
-          loading ? (
-            <div>
-              <span>Registering</span>{" "}
-              <ReactLoading
-                type={"bars"}
-                width="20px"
-                height="20px"
-                color="#fff"
-              />
-            </div>
-          ) : (
-            <div>
-              <span>Register</span>
-              <FaUserPlus />
-            </div>
-          )
-        }
-        className="auth-btn"
-      />
-      <span>{message}</span>
-    </form>
-  );
-}
+//   useEffect(() => {
+//     setPasswordMatch(false);
+//     if (password === secondTimePassword) {
+//       setPasswordMatch(true);
+//     }
+//   }, [password, secondTimePassword]);
+//   return (
+//     <form onSubmit={e => e.preventDefault()} className={className}>
+//       <div>
+//         <input
+//           placeholder="Username"
+//           autoComplete="username"
+//           autoFocus={true}
+//           value={username}
+//           onChange={({ target: { value } }) => setUsername(value)}
+//         />
+//       </div>
+//       <div>
+//         <input
+//           placeholder="you@example.com"
+//           type="email"
+//           autoComplete="email"
+//           value={email}
+//           onChange={({ target: { value } }) => setEmail(value)}
+//         />
+//       </div>
+//       <div>
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           autoComplete="new-password"
+//           value={password}
+//           onChange={({ target: { value } }) => setPassword(value)}
+//         />
+//       </div>
+//       <div>
+//         <input
+//           type="password"
+//           placeholder="Confirm Password"
+//           autoComplete="new-password"
+//           value={secondTimePassword}
+//           onChange={({ target: { value } }) => setsecondTimePassword(value)}
+//         />
+//       </div>
+//       <Button
+//         action={
+//           passwordMatch
+//             ? register
+//             : () => customeErrMessage(setMessage, "passwords dont match")
+//         }
+//         label={
+//           loading ? (
+//             <div>
+//               <span>Registering</span>{" "}
+//               <ReactLoading
+//                 type={"bars"}
+//                 width="20px"
+//                 height="20px"
+//                 color="#fff"
+//               />
+//             </div>
+//           ) : (
+//             <div>
+//               <span>Register</span>
+//               <FaUserPlus />
+//             </div>
+//           )
+//         }
+//         className="auth-btn"
+//       />
+//       <span>{message}</span>
+//     </form>
+//   );
+// }
 
 function AuthContainer() {
   const [access, setAccess] = useState("login");
@@ -227,19 +229,9 @@ function AuthContainer() {
             Login
           </button>
         </div>
-        <div>
-          <button
-            className={access === "register" ? "reg active" : "reg"}
-            onClick={() => setAccess("register")}
-          >
-            Register
-          </button>
-        </div>
       </div>
       <div>
-        {access === "register" ? (
-          <Register className="auth-flex" />
-        ) : access === "login" ? (
+        {access === "login" ? (
           <Login className="auth-flex" />
         ) : (
           <Login className="auth-flex" />
@@ -248,10 +240,10 @@ function AuthContainer() {
     </div>
   );
 }
-function Banner({ mainMessage, subMessage }) {
+function Banner({ subMessage }) {
   return (
     <div className="banner">
-      <h1>{mainMessage}</h1>
+      <img src={logo} alt="logo" />
       <h2>{subMessage}</h2>
     </div>
   );
@@ -259,7 +251,7 @@ function Banner({ mainMessage, subMessage }) {
 function AuthPageContainer() {
   return (
     <div className="auth-container">
-      <Banner mainMessage="Title" subMessage="Sub title/Call to action" />
+      <Banner subMessage="Company Search" />
       <div className="login">
         <div>
           <AuthContainer />

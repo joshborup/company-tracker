@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import { useSelector } from "react-redux";
-import CustomView from "./components/CustomView/CustomView";
 import Home from "./components/Home/Home";
 import AuthContainer from "./components/Auth/AuthContainer";
+import StudentView from "./components/StudentView/StudentView";
 import userFetch from "./hooks/fetchUser";
-
+import StudentProfile from "./components/StudentProfile/StudentProfile";
+import fetchStudents from "./hooks/fetchStudent";
+import Companies from "./components/Companies/Companies";
+import CompanyView from "./components/Companies/CompanyView";
+import axios from "axios";
 import "./App.scss";
 
 function App() {
+  const [companyContacts, setCompanyContacts] = useState([]);
+  useEffect(() => {
+    axios.get("/api/companies").then(companies => {
+      setCompanyContacts(companies.data);
+    });
+  }, []);
   userFetch("/api/user");
-  const user = useSelector(state => state.user);
+
+  const {
+    students,
+    loading,
+    getStudentAssessments,
+    student,
+    getHTMLCompetencies,
+    getStudentCompetencies
+  } = fetchStudents("/api/students");
+  const user = useSelector(state => state.userReducer.user);
+
   return (
     <div className="App">
       {user ? (
@@ -31,31 +51,77 @@ function App() {
               }}
             />
             <Route
-              path="/page1"
+              exact
+              path="/students"
               render={() => {
                 return (
-                  <Layout flexDirection="column" className="home-container">
-                    <CustomView page="1" />
+                  <Layout
+                    flexDirection="column"
+                    justifyContent="flex-start"
+                    className="student-view-container"
+                    padding="100px 0 0 0"
+                  >
+                    ,
+                    <StudentView
+                      page="Students"
+                      students={students}
+                      loading={loading}
+                      getStudentAssessments={getStudentAssessments}
+                      getStudentCompetencies={getStudentCompetencies}
+                      getHTMLCompetencies={getHTMLCompetencies}
+                    />
                   </Layout>
                 );
               }}
             />
             <Route
-              path="/page2"
+              path="/companies"
               render={() => {
                 return (
-                  <Layout flexDirection="column" className="home-container">
-                    <CustomView page="2" />
+                  <Layout
+                    flexDirection="column"
+                    className="companies-container"
+                    padding="140px 0 100px"
+                  >
+                    <Route
+                      path="/companies/add"
+                      render={() => {
+                        return (
+                          <Companies
+                            companyContacts={companyContacts}
+                            setCompanyContacts={setCompanyContacts}
+                          />
+                        );
+                      }}
+                    />
+                    <Route
+                      path="/companies/view"
+                      render={() => {
+                        return (
+                          <CompanyView
+                            companyContacts={companyContacts}
+                            setCompanyContacts={setCompanyContacts}
+                          />
+                        );
+                      }}
+                    />
                   </Layout>
                 );
               }}
             />
             <Route
-              path="/page3"
-              render={() => {
+              path="/students/profile/:id"
+              render={({ match }) => {
                 return (
-                  <Layout flexDirection="column" className="home-container">
-                    <CustomView page="3" />
+                  <Layout
+                    flexDirection="column"
+                    className="student-profile-container"
+                  >
+                    <StudentProfile
+                      match={match}
+                      student={student}
+                      getStudentAssessments={getStudentAssessments}
+                    />
                   </Layout>
                 );
               }}

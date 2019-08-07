@@ -13,7 +13,7 @@ export function Layout({
 }) {
   const style = {
     display: display || "flex",
-    maxWidth: maxWidth || "1100px",
+    maxWidth: maxWidth || "1400px",
     justifyContent: justifyContent || "center",
     alignItems: alignItems || "center",
     flexDirection: flexDirection || "row",

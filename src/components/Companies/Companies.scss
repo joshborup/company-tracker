@@ -1,0 +1,186 @@
+.companies-container {
+  .companies-posted-container {
+    display: flex;
+    padding: 0 5px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 600px;
+    @media (max-width: 1300px) {
+      margin: 40px 0;
+    }
+  }
+
+  > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    > div {
+      flex: 1;
+      margin: 0 15px;
+    }
+
+    @media (max-width: 1300px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .contact-form {
+    padding: 30px;
+
+    border-radius: 4px;
+    background: rgb(44, 44, 44);
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.449),
+      1px 4px 15px rgba(0, 0, 0, 0.153);
+    color: white;
+
+    h1 {
+      font-size: 42px;
+      margin: 0 10px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      font-size: 20px;
+
+      .divide {
+        border: 1px solid white;
+        height: 1px;
+        width: 100%;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        .field {
+          display: flex;
+          flex-direction: column;
+          margin: 10px;
+        }
+
+        .field.photo-input {
+          width: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+          margin: 10px 0;
+          min-height: 35px;
+          min-width: 250px;
+          border-radius: 5px;
+          background: rgb(240, 240, 240);
+          box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.418);
+          border: solid #2090dd 2px;
+          font-size: 16px;
+        }
+        input[name="photo"] {
+          width: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+          width: 300px;
+          background: rgb(44, 44, 44);
+          color: white;
+          height: 40px;
+          margin-bottom: 5px;
+          font-size: 24px;
+          align-self: flex-start;
+          border-radius: 5px;
+          outline: none;
+          box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.349),
+            1px 4px 15px rgba(0, 0, 0, 0.103);
+        }
+
+        input {
+          text-align: start;
+          padding-left: 10px;
+        }
+
+        input::placeholder {
+          color: rgba(255, 255, 255, 0.801);
+        }
+
+        select {
+          height: 35px;
+        }
+
+        textarea,
+        .note {
+          height: 100px;
+          width: 100%;
+        }
+
+        .profile-image {
+          flex: 1;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .double {
+        flex-direction: row;
+        display: flex;
+      }
+      button {
+        @extend %base-button;
+        background-color: $main;
+        color: white;
+        align-self: flex-end;
+        margin: 10px 0;
+        padding: 10px 20px;
+        border: solid 2px rgb(53, 170, 206);
+      }
+    }
+  }
+}
+
+.contact-container {
+  flex: 1;
+  min-width: 42%;
+  max-width: 47%;
+  margin: 0 10px 10px;
+  justify-content: flex-start;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 4px;
+  background: rgb(44, 44, 44);
+  box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.449),
+    1px 4px 15px rgba(0, 0, 0, 0.153);
+  color: white;
+  padding: 15px;
+
+  .contact-photo {
+    width: 80px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.companies-posted-container-view {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 15px 15px;
+  .contact-container {
+    margin: 10px 0;
+    .contact-notes {
+      align-self: flex-start;
+      border: solid 2px rgb(53, 170, 206);
+
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}

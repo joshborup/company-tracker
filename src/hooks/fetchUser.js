@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 export default function FetchUser(url) {
-  const user = useSelector(({ user }) => user);
+  const user = useSelector(({ userReducer: { user } }) => user);
 
   const dispatch = useDispatch();
   function getUser() {
@@ -19,6 +19,6 @@ export default function FetchUser(url) {
       })
       .catch(err => console.log(err));
   }, [dispatch]);
-  console.log(user);
+
   return [user, getUser];
 }

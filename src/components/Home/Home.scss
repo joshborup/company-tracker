@@ -1,2 +1,18 @@
 .home-container {
+  > div {
+    padding: 25px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.449),
+      1px 4px 15px rgba(0, 0, 0, 0.153);
+    border-radius: 6px;
+    background: rgb(44, 44, 44);
+    h2 {
+      color: white;
+      text-align: center;
+      font-weight: 500;
+      font-size: 42px;
+    }
+    img {
+      width: 100%;
+    }
+  }
 }

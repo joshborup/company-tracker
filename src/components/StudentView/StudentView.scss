@@ -1,0 +1,108 @@
+.student-view-container {
+  padding: 10px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+  }
+
+  .individual-students {
+    width: 100%;
+    margin: 8px 0;
+    background: rgb(44, 44, 44);
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.449),
+      1px 4px 15px rgba(0, 0, 0, 0.153);
+    border-radius: 5px;
+    .name {
+      text-transform: capitalize;
+    }
+    > a {
+      color: white;
+      margin: 5px 0;
+      padding: 15px;
+      font-size: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      > div:not(:nth-child(4)) {
+        flex: 2;
+        text-align: center;
+      }
+      > div:nth-child(3) {
+        span {
+          display: inline-block;
+          padding: 10px;
+          border-radius: 5px;
+          border: white solid 3px;
+          text-shadow: 0.5px 0.5px 1px black;
+          background: rgb(32, 145, 221);
+        }
+      }
+    }
+
+    .inactive {
+      text-decoration: line-through red;
+    }
+  }
+  .individual-students:hover {
+    background: rgb(66, 66, 66);
+  }
+
+  .individual-students.heading {
+    background: rgb(32, 145, 221);
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0.5px 0.5px 1px black;
+    font-size: 26px;
+    border-radius: 5px;
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > div:not(:nth-child(4)) {
+      text-align: center;
+      flex: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .student-filters {
+    justify-content: space-between;
+  }
+  select,
+  input {
+    width: 300px;
+    background: rgb(44, 44, 44);
+    color: white;
+    height: 40px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    align-self: flex-start;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.349),
+      1px 4px 15px rgba(0, 0, 0, 0.103);
+  }
+
+  input {
+    text-align: start;
+    padding-left: 10px;
+  }
+
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.801);
+  }
+}

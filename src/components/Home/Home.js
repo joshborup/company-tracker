@@ -1,10 +1,11 @@
 import React from "react";
+import logo from "../Shared/Logo.png";
 
 export default function Home(props) {
   return (
-    <>
-      <h1>Home</h1>
-      <h2>SubHome</h2>
-    </>
+    <div>
+      <img src={logo} alt="logo" />
+      <h2>Company Search</h2>
+    </div>
   );
 }

@@ -1,0 +1,164 @@
+.student-profile-container {
+  display: flex;
+  width: 100%;
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 90px;
+  }
+
+  .academics-container {
+    > div {
+      background: rgb(44, 44, 44);
+      box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.463),
+        1px 4px 15px rgba(0, 0, 0, 0.143);
+    }
+  }
+  .job-prep-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    [accept="application/pdf"] {
+      position: relative;
+      width: 300px;
+      margin: 10px auto 0;
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.463),
+        1px 4px 15px rgba(0, 0, 0, 0.143);
+    }
+    > [accept="application/pdf"]::after {
+      content: "Add a new resume";
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      @extend %base-button;
+      background-color: $main;
+      color: white;
+      align-self: flex-end;
+      border: solid 2px rgb(53, 170, 206);
+      text-shadow: 1px 1px 2px black;
+    }
+    .pdf-downloader {
+      margin: 10px 0 15px;
+      font-size: 28px;
+      text-align: center;
+      width: 100%;
+      font-weight: 600;
+      color: rgb(53, 170, 206);
+    }
+    label {
+      color: black;
+      font-size: 20px;
+    }
+
+    input {
+      border: none;
+    }
+  }
+  .profile-assessments {
+    flex: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    > a {
+      @extend %base-button;
+      background-color: $main;
+      color: white;
+      align-self: flex-start;
+      margin: 10px;
+      padding: 10px 20px;
+      border: solid 2px rgb(53, 170, 206);
+      border-radius: 5px;
+      box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.463),
+        1px 4px 15px rgba(0, 0, 0, 0.143);
+    }
+
+    > h1 {
+      text-transform: capitalize;
+    }
+
+    > h1,
+    h2 {
+      color: #000000;
+      margin: 0px 10px;
+      padding-bottom: 10px;
+    }
+    h2 {
+      border-bottom: solid 2px rgb(44, 44, 44);
+      width: 100%;
+      text-transform: capitalize;
+    }
+    > div {
+      flex: 1;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      > div {
+        display: flex;
+        justify-content: center;
+        padding: 0 15px 15px;
+
+        width: 100%;
+        margin: 0 10px 10px;
+        align-items: flex-start;
+        border-radius: 5px;
+        flex-direction: column;
+      }
+
+      .assessments {
+        margin: 5px 0;
+        font-weight: 600;
+        flex: 1;
+        padding: 8px;
+        border: 2px solid white;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
+.react-pdf__Document {
+  width: 100%;
+  > div > div {
+  }
+}
+.multi-page-res {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  > div {
+    border: solid rgb(42, 42, 42) 1px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.463),
+      1px 4px 15px rgba(0, 0, 0, 0.143);
+  }
+}
+
+.single-page-res {
+  display: flex;
+  justify-content: flex-start;
+
+  > div {
+    border: solid rgb(42, 42, 42) 1px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.463),
+      1px 4px 15px rgba(0, 0, 0, 0.143);
+  }
+}

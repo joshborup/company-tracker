@@ -2,13 +2,32 @@
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  background: rgb(44, 44, 44);
   .banner {
     flex: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgb(240, 240, 240);
+    background: rgb(44, 44, 44);
+    color: white;
+    padding: 20px;
+    text-transform: uppercase;
+
+    img {
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 55px;
+      border-top: solid 2px rgb(53, 170, 206);
+      padding: 10px;
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      margin: 20px;
+      border-bottom: solid 2px rgb(53, 170, 206);
+    }
   }
 
   .login {
@@ -60,16 +79,19 @@
     align-items: flex-start;
 
     .login-register-container {
-      background: white;
-      border-radius: 7px;
+      background: rgb(24, 24, 24);
+      border-radius: 10px;
       width: 270px;
-      box-shadow: 1px 4px 7px rgba(0, 0, 0, 0.397),
-        1px 4px 17px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 4px 7px rgba(0, 0, 0, 0.597),
+        1px 4px 17px rgba(0, 0, 0, 0.2);
+      color: white;
+      border: solid 4px white;
 
       .button-tabs {
         display: flex;
         justify-content: center;
         align-items: center;
+
         div {
           width: 100%;
           button {
@@ -77,11 +99,17 @@
             width: 100%;
             border: none;
             color: white;
-            background: $accent;
+            background: rgb(24, 24, 24);
+            outline: none;
           }
           .active {
-            background: white;
-            color: #333;
+            background: rgb(53, 170, 206);
+            text-shadow: 1px 1px 2px black;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: white;
+            text-transform: uppercase;
           }
         }
       }
@@ -92,6 +120,10 @@
       }
     }
   }
+
+  @media (max-width: 1400px) {
+    flex-direction: column;
+  }
 }
 
 .auth-btn {
@@ -100,6 +132,8 @@
   color: white;
   align-self: flex-end;
   margin: 10px 0;
+  padding: 10px 20px;
+  border: solid 2px rgb(53, 170, 206);
   > div {
     display: flex;
     justify-content: center;
@@ -117,10 +151,7 @@
   cursor: initial !important;
 }
 
-.reg {
-  border-top-right-radius: 7px;
-}
-
 .log {
   border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Logo from "../Shared/Logo";
+import { FaBars } from "react-icons/fa";
 import axios from "axios";
 
 function LoggedInLinks({ setToggle, toggle }) {
@@ -17,25 +18,46 @@ function LoggedInLinks({ setToggle, toggle }) {
         toggle ? "main-nav-link-container show" : "main-nav-link-container hide"
       }
     >
-      <NavLink onClick={setToggle} to="/">
+      <NavLink
+        exact
+        activeStyle={{ color: "#47caff" }}
+        onClick={setToggle}
+        to="/"
+      >
         Home
       </NavLink>
-      <NavLink onClick={setToggle} to="/page1">
-        Page 1
+      <NavLink
+        activeStyle={{ color: "#47caff" }}
+        onClick={setToggle}
+        to="/students"
+      >
+        Students
       </NavLink>
-      <NavLink onClick={setToggle} to="/page2">
-        Page 2
+
+      <NavLink
+        exact
+        activeStyle={{ color: "#47caff" }}
+        onClick={setToggle}
+        to="/companies/view"
+      >
+        Companies
       </NavLink>
-      <NavLink onClick={setToggle} to="/page3">
-        Page 3
+      <NavLink
+        exact
+        activeStyle={{ color: "#47caff" }}
+        onClick={setToggle}
+        to="/companies/add"
+      >
+        Add Partner
       </NavLink>
+
       <button onClick={logout}>Logout</button>
     </div>
   );
 }
 
 function Header(props) {
-  const user = useSelector(state => state.user);
+  const user = useSelector(state => state.userReducer.user);
   const [toggle, setToggle] = useState(false);
   return (
     <header className="main-header">
@@ -47,7 +69,7 @@ function Header(props) {
           onClick={() => setToggle(!toggle)}
           className="nav-toggler-button"
         >
-          Toggle
+          <FaBars />
         </button>
         <div>
           {user ? (
