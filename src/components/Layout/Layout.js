@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Layout({
+export default function Layout({
   children,
   display,
   maxWidth,
@@ -9,17 +9,19 @@ export function Layout({
   flexDirection,
   margin,
   padding,
-  className
+  className,
+  minHeight
 }) {
   const style = {
     display: display || "flex",
     maxWidth: maxWidth || "1400px",
+    width: "100%",
     justifyContent: justifyContent || "center",
     alignItems: alignItems || "center",
     flexDirection: flexDirection || "row",
     margin: margin || "0px auto 0",
     padding: padding || "20px 10px",
-    minHeight: "100vh"
+    minHeight: minHeight || "100vh"
   };
 
   return (

@@ -3,10 +3,12 @@ const fileUpload = require("express-fileupload");
 const fs = require("fs");
 const express = require("express");
 const app = express();
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 app.use(express.json());
 app.use(fileUpload());
 app.use(express.static(__dirname + "/../build"));
+app.use(cookieParser());
 const mongoose = require("mongoose");
 const massive = require("massive");
 const {
@@ -117,6 +119,7 @@ app
 
 app.get("/api/auth/callback", (req, res, next) => {
   console.log(req);
+  console.log("Cookies: ", req.cookies);
 });
 
 const port = SERVER_PORT;

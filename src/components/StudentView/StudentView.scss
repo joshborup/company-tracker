@@ -12,7 +12,9 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
+      font-size: 20px;
       width: 100%;
+      padding: 0 5px;
     }
   }
 
@@ -30,11 +32,11 @@
       color: white;
       margin: 5px 0;
       padding: 15px;
-      font-size: 20px;
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       cursor: pointer;
       > div:not(:nth-child(4)) {
         flex: 2;
@@ -104,5 +106,13 @@
 
   input::placeholder {
     color: rgba(255, 255, 255, 0.801);
+  }
+
+  @media (max-width: 600px) {
+    > div {
+      > div {
+        font-size: initial;
+      }
+    }
   }
 }

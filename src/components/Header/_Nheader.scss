@@ -1,0 +1,140 @@
+:root {
+  --primary-color: rgb(43, 43, 43);
+  --secondary-color: rgb(0, 140, 255);
+  --third-color: rgb(0, 118, 214);
+}
+
+#navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+  background: rgb(44, 44, 44);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.425), 1px 4px 20px rgba(0, 0, 0, 0.13);
+}
+
+#navbar ul {
+  list-style: none;
+}
+
+#navbar ul li {
+  position: relative;
+  display: inline-block;
+  padding: 1.3rem;
+  color: white;
+}
+
+#navbar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Hide nested ul by default */
+#navbar ul li ul {
+  display: none;
+}
+
+#navbar ul li:hover {
+  background: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  background: var(--secondary-color) !important;
+}
+
+#navbar ul li:hover a {
+  color: #fff;
+}
+
+/* Nested dropdown show */
+#navbar ul li:hover ul {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 200px;
+  margin-top: 1rem;
+}
+
+#navbar ul li:hover ul li {
+  display: block;
+  background: var(--primary-color);
+}
+
+#navbar ul li:hover ul li a {
+  color: white;
+}
+
+#navbar ul li:hover ul li:hover {
+  background: var(--primary-color);
+  color: inherit;
+}
+
+#navbar ul li:hover ul li span {
+  float: right;
+  padding: 0.2rem 0.5rem;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+#navbar ul li:hover ul li:hover span {
+  background: var(--secondary-color);
+}
+
+#showcase {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  padding: 0 2rem;
+  background: var(--primary-color);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#showcase h1 {
+  color: #fff;
+  font-size: 4rem;
+}
+
+.active:not(.logout) > li {
+  background: var(--secondary-color) !important;
+  color: white !important;
+}
+
+@media (max-width: 600px) {
+  #navbar {
+    justify-content: center;
+    align-items: center;
+  }
+
+  #navbar ul {
+    width: 100%;
+    padding: 10px;
+  }
+
+  #navbar ul li {
+    display: block;
+  }
+
+  #navbar ul li:hover ul {
+    position: relative;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #navbar ul a li:hover ul li {
+    padding-left: 35px;
+    padding-right: 0;
+  }
+  #navbar ul a li:hover ul a li {
+    padding-left: 35px;
+    padding-right: 0;
+  }
+
+  #navbar ul li:hover ul a li:hover {
+    background: var(--third-color) !important;
+  }
+}

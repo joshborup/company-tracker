@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
+import NHeader from "./components/Header/NHeader";
 import { Switch, Route, NavLink } from "react-router-dom";
-import { Layout } from "./components/Layout/Layout";
+import Layout from "./components/Layout/Layout";
 import { useSelector } from "react-redux";
 import Home from "./components/Home/Home";
 import AuthContainer from "./components/Auth/AuthContainer";
@@ -37,7 +38,7 @@ function App() {
     <div className="App">
       {user ? (
         <>
-          <Header />
+          <NHeader />
           <Switch>
             <Route
               exact
@@ -59,7 +60,7 @@ function App() {
                     flexDirection="column"
                     justifyContent="flex-start"
                     className="student-view-container"
-                    padding="100px 0 0 0"
+                    padding="30px 0 0 0"
                   >
                     ,
                     <StudentView
@@ -81,7 +82,7 @@ function App() {
                   <Layout
                     flexDirection="column"
                     className="companies-container"
-                    padding="140px 0 100px"
+                    padding="40px 0 100px"
                   >
                     <Route
                       path="/companies/add"
