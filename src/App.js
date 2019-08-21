@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Header from "./components/Header/Header";
 import NHeader from "./components/Header/NHeader";
-import { Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { useSelector } from "react-redux";
 import Home from "./components/Home/Home";
@@ -12,6 +11,7 @@ import StudentProfile from "./components/StudentProfile/StudentProfile";
 import fetchStudents from "./hooks/fetchStudent";
 import Companies from "./components/Companies/Companies";
 import CompanyView from "./components/Companies/CompanyView";
+import CompanyProfile from "./components/CompanyProfile/CompanyProfile";
 import axios from "axios";
 import "./App.scss";
 
@@ -62,7 +62,6 @@ function App() {
                     className="student-view-container"
                     padding="30px 0 0 0"
                   >
-                    ,
                     <StudentView
                       page="Students"
                       students={students}
@@ -82,6 +81,8 @@ function App() {
                   <Layout
                     flexDirection="column"
                     className="companies-container"
+                    alignItems="center"
+                    justifyContent="flex-start"
                     padding="40px 0 100px"
                   >
                     <Route
@@ -106,6 +107,20 @@ function App() {
                         );
                       }}
                     />
+                    <Route
+                      path="/companies/profile/:id"
+                      render={({ match }) => {
+                        return (
+                          <Layout
+                            flexDirection="column"
+                            className="companies-container"
+                            justifyContent="flex-start"
+                          >
+                            <CompanyProfile companyId={match.params.id} />
+                          </Layout>
+                        );
+                      }}
+                    />
                   </Layout>
                 );
               }}
@@ -117,12 +132,26 @@ function App() {
                   <Layout
                     flexDirection="column"
                     className="student-profile-container"
+                    padding="30px 0 0 0"
                   >
                     <StudentProfile
                       match={match}
                       student={student}
                       getStudentAssessments={getStudentAssessments}
                     />
+                  </Layout>
+                );
+              }}
+            />
+            <Route
+              path="*"
+              render={({ match }) => {
+                return (
+                  <Layout
+                    flexDirection="column"
+                    className="student-profile-container"
+                  >
+                    get outta here
                   </Layout>
                 );
               }}

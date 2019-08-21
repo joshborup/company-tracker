@@ -1,13 +1,18 @@
 .companies-container {
+  > div {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+  }
   .companies-posted-container {
     display: flex;
     padding: 0 5px;
     flex-wrap: wrap;
     flex-direction: row;
     justify-items: center;
+    align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    max-height: 600px;
     @media (max-width: 1300px) {
       margin: 40px 0;
     }
@@ -16,20 +21,23 @@
   > div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: flex-start;
+
     > div {
-      flex: 1;
       margin: 0 15px;
+
+      flex: 1;
     }
 
     @media (max-width: 1300px) {
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
     }
   }
   .contact-form {
     padding: 30px;
-
     border-radius: 4px;
     background: rgb(44, 44, 44);
     box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.449),
@@ -84,6 +92,14 @@
         input[name="photo"] {
           width: 100%;
         }
+        input[name="name"],
+        input[name="email"] {
+          margin-right: 10px;
+        }
+        input[name="company"],
+        input[name="phone"] {
+          margin-left: 10px;
+        }
 
         input,
         select,
@@ -116,7 +132,7 @@
 
         textarea,
         .note {
-          height: 100px;
+          min-height: 100px;
           width: 100%;
         }
 
@@ -127,9 +143,77 @@
           }
         }
       }
+
+      .tags {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        .tech-use-container {
+          align-self: center;
+        }
+        .tech-use-container > div:first-child {
+          display: flex;
+        }
+
+        > div {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          > div {
+            position: relative;
+
+            .first-input {
+              border: #2090dd solid 3px;
+            }
+
+            button {
+              margin: 0 5px;
+            }
+
+            .tech-tag-container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 10px;
+              border: #2090dd 2px solid;
+              text-transform: capitalize;
+              border-radius: 4px;
+              padding: 5px 0 5px 5px;
+            }
+
+            .minus {
+              background: red;
+              padding: 0;
+              border-radius: 50%;
+              width: 25px;
+              height: 25px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              min-height: initial;
+            }
+
+            label {
+              margin: 0 10px;
+            }
+
+            input {
+              width: 60px;
+              height: 20px;
+              font-size: 13px;
+              margin-left: 5px;
+              border: none;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+
       .double {
         flex-direction: row;
         display: flex;
+        justify-content: flex-start;
       }
       button {
         @extend %base-button;
@@ -138,7 +222,39 @@
         align-self: flex-end;
         margin: 10px 0;
         padding: 10px 20px;
-        border: solid 2px rgb(53, 170, 206);
+        border: solid 2px rgb(0, 140, 255);
+      }
+    }
+
+    @media (max-width: 800px) {
+      form {
+        flex-direction: column;
+        .row {
+          align-items: center;
+        }
+        .double {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .field {
+            width: 100%;
+            margin: 10px 0;
+
+            input[name="name"],
+            input[name="email"] {
+              margin-right: 0px;
+            }
+            input[name="company"],
+            input[name="phone"] {
+              margin-left: 0px;
+            }
+
+            input {
+              width: 100%;
+            }
+          }
+        }
       }
     }
   }
@@ -149,11 +265,10 @@
   min-width: 42%;
   max-width: 47%;
   margin: 0 10px 10px;
-  justify-content: flex-start;
-
-  display: flex;
-  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  display: flex;
+  align-items: flex-start;
   border-radius: 4px;
   background: rgb(44, 44, 44);
   box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.449),
@@ -161,8 +276,19 @@
   color: white;
   padding: 15px;
 
+  > div {
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .contact-notes {
+    text-align: left;
+  }
+
   .contact-photo {
-    width: 80px;
+    width: 65px;
     img {
       width: 100%;
     }
@@ -172,14 +298,60 @@
 .companies-posted-container-view {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
   padding: 0 15px 15px;
+
+  .indentity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   .contact-container {
-    margin: 10px 0;
+    margin: 10px;
+    min-width: 380px;
+    > div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    > div > div:last-child {
+      flex: 8;
+      padding: 0 10px;
+      height: 100%;
+      align-self: center;
+      justify-content: center;
+    }
+
     .contact-notes {
       align-self: flex-start;
       border: solid 2px rgb(53, 170, 206);
       width: 100%;
       padding: 10px;
+      div {
+        padding: 5px;
+        margin: 10px 0;
+      }
+      details {
+        width: 100%;
+      }
     }
+
+    .contact-email,
+    .indentity-row,
+    .contact-phone {
+      margin: 5px 0;
+    }
+
+    .contact-name {
+      font-size: 24px;
+    }
+  }
+
+  .contact-container:hover {
+    background: rgb(66, 66, 66);
   }
 }

@@ -28,6 +28,8 @@
     [accept="application/pdf"] {
       position: relative;
       width: 300px;
+      z-index: 1;
+
       margin: 10px auto 0;
       border-radius: 5px;
       padding: 10px;
@@ -76,6 +78,7 @@
     color: white;
     display: flex;
     flex-direction: column;
+    padding-top: 0px;
     > a {
       @extend %base-button;
       background-color: $main;
@@ -101,12 +104,17 @@
     }
     h2 {
       border-bottom: solid 2px rgb(44, 44, 44);
-      width: 100%;
+      align-self: center;
+      justify-self: center;
       text-transform: capitalize;
+      width: 100%;
+      padding-left: 10px;
+      margin-bottom: 10px;
     }
     > div {
       flex: 1;
       display: flex;
+      align-items: flex-start;
       width: 100%;
       justify-content: space-between;
 
@@ -114,7 +122,7 @@
         display: flex;
         justify-content: center;
         padding: 0 15px 15px;
-
+        min-width: 200px;
         width: 100%;
         margin: 0 10px 10px;
         align-items: flex-start;
@@ -133,12 +141,27 @@
         justify-content: space-between;
         align-items: center;
       }
+
+      @media (max-width: 680px) {
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .academics-container {
+        flex-wrap: wrap;
+      }
     }
   }
 }
 .react-pdf__Document {
   width: 100%;
+  z-index: -1;
   > div > div {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 .multi-page-res {
@@ -149,6 +172,13 @@
     border: solid rgb(42, 42, 42) 1px;
     box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.463),
       1px 4px 15px rgba(0, 0, 0, 0.143);
+  }
+
+  @media (max-width: 680px) {
+    flex-direction: column;
+    > div {
+      width: 100% !important;
+    }
   }
 }
 

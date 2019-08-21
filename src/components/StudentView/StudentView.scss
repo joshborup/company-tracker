@@ -28,6 +28,7 @@
     .name {
       text-transform: capitalize;
     }
+
     > a {
       color: white;
       margin: 5px 0;
@@ -36,6 +37,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
 
       cursor: pointer;
       > div:not(:nth-child(4)) {
@@ -52,6 +54,14 @@
           background: rgb(32, 145, 221);
         }
       }
+
+      @media (max-width: 680px) {
+        flex-direction: column;
+        .email,
+        .cohort {
+          margin: 10px 0;
+        }
+      }
     }
 
     .inactive {
@@ -63,7 +73,7 @@
   }
 
   .individual-students.heading {
-    background: rgb(32, 145, 221);
+    background: rgb(0, 140, 255);
     color: rgba(255, 255, 255, 1);
     text-shadow: 0.5px 0.5px 1px black;
     font-size: 26px;

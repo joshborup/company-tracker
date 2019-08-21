@@ -1,47 +1,75 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import Logo from "../Shared/Logo";
+import { useDispatch } from "react-redux";
 import { FaBars } from "react-icons/fa";
+import Logo from "../Shared/Logo";
 import Layout from "../Layout/Layout";
 import axios from "axios";
+
 export default function Nheader() {
-  const user = useSelector(state => state.userReducer.user);
-  const [toggle, setToggle] = useState(false);
+  const [background, setBackground] = useState(window.location.pathname);
+  const [toggle, setToggle] = useState(true);
   const dispatch = useDispatch();
   function logout() {
     axios.get("/api/logout").then(() => {
       dispatch({ type: "SET_USER", payload: null });
     });
   }
+
   return (
     <nav id="navbar">
       <Layout
         minHeight={"0"}
         padding={"0"}
-        justifyContent="flex-end"
+        justifyContent="space-between"
         flexDirection="row"
       >
-        <ul>
-          <NavLink exact activeClassName="active" onClick={setToggle} to="/">
+        <Logo className="logo" />
+        <ul className={toggle ? "hide" : "show"}>
+          <NavLink
+            exact
+            activeClassName="active"
+            onClick={() => {
+              setBackground("");
+              setToggle(!toggle);
+            }}
+            to="/"
+          >
             <li>Home</li>
           </NavLink>
 
-          <NavLink activeClassName="active" onClick={setToggle} to="/students">
-            <li>Students</li>
-          </NavLink>
           <NavLink
             activeClassName="active"
-            onClick={setToggle}
+            onClick={() => {
+              setBackground("");
+              setToggle(!toggle);
+            }}
+            to="/students"
+          >
+            <li>Students</li>
+          </NavLink>
+          <div
+            style={{
+              display: "inline-block",
+              background:
+                window.location.pathname === "/companies/view" ||
+                window.location.pathname === "/companies/add"
+                  ? "rgb(0, 140, 255)"
+                  : background
+            }}
+            className="links-container"
             to="/companies/view"
           >
             <li>
-              Companies <i class="fas fa-angle-down" />
+              Companies
               <ul>
                 <NavLink
                   exact
                   activeClassName="active"
-                  onClick={setToggle}
+                  onClick={() => {
+                    setBackground("rgb(0, 140, 255)");
+                    setToggle(!toggle);
+                  }}
                   to="/companies/view"
                 >
                   <li>Companies</li>
@@ -49,24 +77,33 @@ export default function Nheader() {
                 <NavLink
                   exact
                   activeClassName="active"
-                  onClick={setToggle}
+                  onClick={() => {
+                    setBackground("rgb(0, 140, 255)");
+                    setToggle(!toggle);
+                  }}
                   to="/companies/add"
                 >
-                  <li>Add Partner</li>
+                  <li>Add Company</li>
                 </NavLink>
               </ul>
             </li>
-          </NavLink>
+          </div>
           <NavLink
             className="logout"
             exact
-            onClick={setToggle}
+            onClick={() => {
+              setBackground("");
+              logout();
+              setToggle(!toggle);
+            }}
             to="/"
-            onClick={logout}
           >
             <li>Logout</li>
           </NavLink>
         </ul>
+        <button className="mobile-toggle" onClick={() => setToggle(!toggle)}>
+          <FaBars color="white" />
+        </button>
       </Layout>
     </nav>
   );

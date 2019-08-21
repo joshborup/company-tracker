@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Formik, Form, Field } from "formik";
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -10,10 +10,6 @@ const fixedDate = date.toLocaleDateString();
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Too Short!")
-    .max(100, "Too Long!")
-    .required("Required"),
-  name: Yup.string()
-    .min(2, "Too Short!")
     .max(300, "Too Long!")
     .required("Required"),
   email: Yup.string()
@@ -21,10 +17,12 @@ const SignupSchema = Yup.object().shape({
     .required("Required"),
   notes: Yup.string(),
   phone: Yup.string(),
-  photo: Yup.string().url()
+  photo: Yup.string().url(),
+  last_contact: Yup.date(),
+  technologies: Yup.array().of(Yup.string("Must Choose a Technology name"))
 });
 
-export default function ContactForm({ setCompanyContacts, companyContacts }) {
+export default function ContactForm({ setCompanyContacts }) {
   const [message, setMessage] = useState("");
 
   return (
@@ -39,11 +37,13 @@ export default function ContactForm({ setCompanyContacts, companyContacts }) {
             phone: "",
             photo: "",
             company: "",
-            last_contact: fixedDate
+            last_contact: fixedDate,
+            technologies: []
           }}
           validationSchema={SignupSchema}
           onSubmit={(values, action) => {
             // same shape as initial values
+            console.log(action);
             axios.post("/api/companies", values).then(res => {
               setCompanyContacts(res.data);
               setTimeout(() => {
@@ -63,6 +63,7 @@ export default function ContactForm({ setCompanyContacts, companyContacts }) {
             handleBlur,
             isSubmitting
           }) => {
+            const { technologies } = values;
             return (
               <Form>
                 <div className="double row">
@@ -89,9 +90,6 @@ export default function ContactForm({ setCompanyContacts, companyContacts }) {
                     {errors.company && touched.company ? (
                       <div>{errors.company}</div>
                     ) : null}
-                  </div>
-                  <div className="profile-image">
-                    <img src={values.photo} />
                   </div>
                 </div>
                 <div className="divide" />
@@ -152,6 +150,85 @@ export default function ContactForm({ setCompanyContacts, companyContacts }) {
                     ) : null}
                   </div>
                 </div>
+                <div className="row">
+                  <div className="field note tags">
+                    <label htmlFor="technologoies">Technologies Used</label>
+                    <FieldArray
+                      name="technologies"
+                      render={arrayHelpers => (
+                        <div className="tech-use-container">
+                          {technologies && technologies.length > 0 ? (
+                            technologies.map((tech, index) => {
+                              return (
+                                <div key={index}>
+                                  {index === 0 ? (
+                                    <div>
+                                      {index === 0 && <label>Tech Name</label>}
+                                      <Field
+                                        name={`technologies.${index}`}
+                                        className={
+                                          index === 0 ? "first-input" : ""
+                                        }
+                                        onKeyPress={e => {
+                                          if (e.key === "Enter")
+                                            arrayHelpers.insert(index, "");
+                                          e.stopPropagation();
+                                        }}
+                                        innerRef={t => {
+                                          if (t && index === 0) {
+                                            t.autofocus = true;
+                                          }
+                                        }}
+                                      />
+                                      <ErrorMessage
+                                        name={`technologies.${index}`}
+                                        component="span"
+                                      />
+                                    </div>
+                                  ) : (
+                                    <div className="tech-tag-container">
+                                      <span className="tech-tagname">
+                                        {tech}
+                                      </span>
+                                      <button
+                                        className={index !== 0 ? "minus" : ""}
+                                        type="button"
+                                        onClick={() => {
+                                          arrayHelpers.remove(index);
+                                        }}
+                                      >
+                                        -
+                                      </button>
+                                    </div>
+                                  )}
+
+                                  {index === 0 && (
+                                    <button
+                                      className="plus"
+                                      type="button"
+                                      onClick={() =>
+                                        arrayHelpers.insert(index, "")
+                                      }
+                                    >
+                                      +
+                                    </button>
+                                  )}
+                                </div>
+                              );
+                            })
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.push("")}
+                            >
+                              Add A Technology
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    />
+                  </div>
+                </div>
                 <button disabled={isSubmitting} type="submit">
                   Submit
                 </button>
@@ -163,33 +240,6 @@ export default function ContactForm({ setCompanyContacts, companyContacts }) {
           }}
         </Formik>
       </div>
-      <CompaniesList companyContacts={companyContacts} />
-    </div>
-  );
-}
-
-function CompaniesList({ companyContacts }) {
-  return (
-    <div className="companies-posted-container">
-      {companyContacts.map(contact => {
-        return (
-          <div className="contact-container" key={contact.id}>
-            <div className="contact-photo">
-              <img src={contact.photo} />
-            </div>
-            <div className="contact-name">{contact.name}</div>
-            <div className="contact-company">{contact.company}</div>
-            <div className="contact-email">{contact.email}</div>
-            <div className="contact-phone">{contact.phone}</div>
-            <div className="contact-notes">
-              <details>
-                <summary>Notes</summary>
-                <div>{contact.notes}</div>
-              </details>
-            </div>
-          </div>
-        );
-      })}
     </div>
   );
 }

@@ -1,0 +1,176 @@
+.contact-profile-container {
+  width: 100%;
+
+  button {
+    cursor: pointer;
+    height: 35px;
+    width: 150px;
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-identity {
+    display: flex;
+    font-size: 32px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, rgb(44, 44, 44), rgb(0, 140, 255));
+    justify-content: space-between;
+    color: white;
+    padding: 20px;
+  }
+
+  .profile-image {
+    display: flex;
+    flex-direction: row;
+    margin: 30px 0;
+    .image-container {
+      width: 250px;
+    }
+
+    .notes-container {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      padding-left: 20px;
+
+      .section-title {
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .additional-notes {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        > div {
+          margin: 0 0 20px;
+          border-left: solid 3px rgb(0, 140, 255);
+          border-top: solid 0.5px rgb(0, 140, 255);
+          border-bottom: solid 3px rgb(0, 140, 255);
+          padding: 10px;
+          border-radius: 5px;
+          box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.449),
+            1px 4px 15px rgba(0, 0, 0, 0.153);
+
+          > span:first-child {
+            border: none;
+            padding-bottom: 2px;
+            font-weight: 700;
+            font-size: 14px;
+          }
+
+          span {
+            display: flex;
+            min-width: 100px;
+            margin-bottom: 5px;
+            font-size: 20px;
+          }
+        }
+      }
+
+      > div {
+        display: flex;
+        flex: 1;
+
+        textarea {
+          width: 100%;
+          font-size: 18px;
+          padding: 5px;
+          border: solid 3px rgb(4, 13, 20);
+          border-radius: 5px;
+          min-height: 100px;
+        }
+
+        > div {
+          display: flex;
+          min-width: 150px;
+        }
+      }
+
+      > div:first-child {
+        > div:last-child {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+
+          button {
+            align-self: flex-end;
+            @extend %base-button;
+            background-color: $main;
+            color: white;
+            margin: 10px 0;
+            border: solid 2px rgb(0, 140, 255);
+          }
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .profile-contact-info {
+    background: rgb(44, 44, 44);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    padding: 15px;
+    border-radius: 5px;
+
+    h2 {
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0 0 0;
+    }
+
+    > div:last-child {
+      border-left: solid 3px rgb(0, 140, 255);
+      padding-left: 15px;
+      align-self: stretch;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    button {
+      @extend %base-button;
+      background-color: $main;
+      color: white;
+      align-self: flex-end;
+      margin: 10px 0;
+      border: solid 2px rgb(0, 140, 255);
+    }
+  }
+}
+
+.stack-used {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  h2 {
+    font-size: 32px;
+    align-self: flex-start;
+  }
+  span {
+    font-size: 28px;
+    margin: 0 7px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: rgb(144, 235, 25);
+  }
+}

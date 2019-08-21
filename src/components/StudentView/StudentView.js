@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -33,10 +33,10 @@ export default function CustomView({ loading, students }) {
             <div className={student.active ? "name" : "name inactive"}>
               {student.name}
             </div>
-            <div className={student.active ? null : "inactive"}>
+            <div className={student.active ? "email" : "email inactive"}>
               {student.email}
             </div>
-            <div className={student.active ? null : "inactive"}>
+            <div className={student.active ? "cohort" : "cohort inactive"}>
               <span>{student.cohort}</span>
             </div>
 
